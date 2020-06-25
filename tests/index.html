@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/a1e4da6441.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="../public/style.css" />
+
+    <title>miSecreto</title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-light" id="navbar">
+      <a id="logo" class="navbar-brand" href="#">
+        <i class="fas fa-surprise"></i>
+        <h3 class="float-right d-none d-sm-block ml-2">
+          mi<strong>Secreto</strong>
+        </h3>
+      </a>
+      <div class="mr-2 d-block d-md-none" id="search-bar-mobile">
+        <form class="form-inline">
+          <input class="form-control" type="search" placeholder="Buscar..." />
+        </form>
+      </div>
+      <div class="d-block d-md-none" id="post-button">
+        <i class="fas fa-pencil-alt"></i>
+      </div>
+      <div id="user-panel-button">
+        <i class="fas fa-user-circle"></i>
+      </div>
+    </nav>
+
+    <aside
+      id="filter-mobile"
+      class="btn-group container d-block d-md-none"
+      role="filter"
+      aria-label="filter"
+    >
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        style="border-top: 0;"
+      >
+        Nuevos
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        style="border-top: 0;"
+      >
+        Mejores
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        style="border-top: 0;"
+      >
+        Polémicos
+      </button>
+    </aside>
+
+    <div class="container-fluid d-flex p-3">
+      <main id="feed" class="col-8">
+        <div class="card text-white bg-primary mb-3">
+          <div class="card-header">
+            Primary card title
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+          </div>
+        </div>
+
+        <div class="card text-white bg-primary mb-3">
+          <div class="card-header">
+            Primary card title
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+          </div>
+        </div>
+
+        <div class="card text-white bg-primary mb-3">
+          <div class="card-header">
+            Primary card title
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+          </div>
+        </div>
+      </main>
+
+      <aside id="sidebar" class="col-4 align-self-start">
+        <div id="search-bar">
+          <form class="form mb-3">
+            <input class="form-control" type="search" placeholder="Buscar..." />
+          </form>
+        </div>
+
+        <div
+          id="filter"
+          class="container btn-group-lg btn-group-vertical mb-3 p-0"
+        >
+          <button type="button" class="btn btn-outline-primary">
+            Nuevos
+          </button>
+          <button type="button" class="btn btn-outline-primary">
+            Mejores
+          </button>
+          <button type="button" class="btn btn-outline-primary">
+            Polémicos
+          </button>
+        </div>
+
+        <div id="input-secretos" class="card text-white bg-info mb-3">
+          <h5 class="card-header">Publicar un secreto:</h5>
+          <div class="card-body p-0">
+            <p class="card-title m-3">Me llamo x y tengo x anios</p>
+            <form class="form m-1">
+              <textarea
+                class="form-control"
+                placeholder="Escribí tu secreto..."
+                rows="5"
+                style="resize: none;"
+              ></textarea>
+            </form>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </body>
+</html>

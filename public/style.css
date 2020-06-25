@@ -1,0 +1,23 @@
+#navbar {
+  background-color: rgb(91, 134, 214);
+}
+
+#logo i {
+  font-size: 2em;
+  color: rgb(255, 236, 64);
+  background-color: #000;
+  border: 2px solid #000;
+  border-radius: 50%;
+}
+
+/* #sidebar {
+  background-color: rgb(65, 107, 145);
+} */
+
+#post-button {
+  font-size: 1.5em;
+}
+
+#user-panel-button {
+  font-size: 1.5em;
+}
