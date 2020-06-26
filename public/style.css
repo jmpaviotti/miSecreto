@@ -1,10 +1,10 @@
 #navbar {
-  background-color: rgb(91, 134, 214);
+  background-color: #016fb9;
 }
 
 #logo i {
   font-size: 2em;
-  color: rgb(255, 236, 64);
+  color: #d8be4d;
   background-color: #000;
   border: 2px solid #000;
   border-radius: 50%;
@@ -20,4 +20,73 @@
 
 #user-panel-button {
   font-size: 1.5em;
+}
+
+/* Card properties for "secretos" */
+
+.secreto {
+  background-color: #a1a1a1;
+  color: #414141;
+  font-family: 'Raleway', sans-serif;
+  border-radius: 5px;
+}
+
+.male {
+  background-color: rgb(162, 181, 247);
+  color: rgb(74, 107, 226);
+}
+
+.female {
+  background-color: rgb(255, 215, 222);
+  color: rgb(247, 94, 120);
+}
+.secreto .card-header {
+  font-size: 1.2em;
+}
+
+.secreto .card-body {
+  background-color: rgb(235, 235, 235);
+  color: #000;
+  font-size: 1.1em;
+}
+
+.secreto .card-footer {
+  background-color: #dddddd;
+  color: rgb(116, 116, 116);
+  font-size: 0.8em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.secreto .card-footer i {
+  font-size: 1.5em;
+}
+
+/* Desktop sidebar */
+
+#search-bar {
+  background-color: #6d8ea0;
+  border: 2px solid #6d8ea0;
+  border-radius: 5px;
+}
+
+#filter .btn {
+  color: #182825;
+  border-color: #6d8ea0;
+}
+
+#filter .btn:hover {
+  background-color: #22aed1;
+  color: #fff;
+}
+
+#input-secretos {
+  background-color: #6d8ea0;
+}
+
+/* Queries */
+@media (min-width: 992px) {
+  #user-panel-button i {
+    font-size: 2em;
+  }
 }

@@ -25,6 +25,12 @@
     <!-- My CSS -->
     <link rel="stylesheet" href="../public/style.css" />
 
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway&display=swap"
+      rel="stylesheet"
+    />
+
     <title>miSecreto</title>
   </head>
 
@@ -32,7 +38,7 @@
     <nav class="navbar navbar-light" id="navbar">
       <a id="logo" class="navbar-brand" href="#">
         <i class="fas fa-surprise"></i>
-        <h3 class="float-right d-none d-sm-block ml-2">
+        <h3 class="float-right d-none d-sm-block m-2">
           mi<strong>Secreto</strong>
         </h3>
       </a>
@@ -80,46 +86,61 @@
 
     <div class="container-fluid d-flex p-3">
       <main id="feed" class="col-8">
-        <div class="card text-white bg-primary mb-3">
+        <div class="secreto mb-3">
           <div class="card-header">
-            Primary card title
+            <i class="far fa-user mr-2"></i>
+            NOMBRE, de XX AÑOS, nos cuenta:
           </div>
           <div class="card-body">
             <p class="card-text">
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </p>
+          </div>
+          <div class="card-footer text-muted pt-1 pb-1">
+            <i class="fas fa-comments"></i>
+            12/12/12 a las 00:00
           </div>
         </div>
 
-        <div class="card text-white bg-primary mb-3">
+        <div class="secreto mb-3 female">
           <div class="card-header">
-            Primary card title
+            <i class="far fa-user mr-2"></i>
+            NOMBRE, MUJER de XX AÑOS, nos cuenta:
           </div>
           <div class="card-body">
             <p class="card-text">
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </p>
+          </div>
+          <div class="card-footer text-muted pt-1 pb-1">
+            <i class="fas fa-comments"></i>
+            12/12/12 a las 00:00
           </div>
         </div>
 
-        <div class="card text-white bg-primary mb-3">
+        <div class="secreto mb-3 male">
           <div class="card-header">
-            Primary card title
+            <i class="far fa-user mr-2"></i>
+            NOMBRE, HOMBRE de XX AÑOS, nos cuenta:
           </div>
           <div class="card-body">
             <p class="card-text">
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </p>
+          </div>
+          <div class="card-footer text-muted pt-1 pb-1">
+            <i class="fas fa-comments"></i>
+            12/12/12 a las 00:00
           </div>
         </div>
       </main>
 
       <aside id="sidebar" class="col-4 align-self-start">
-        <div id="search-bar">
-          <form class="form mb-3">
+        <div id="search-bar" class="mb-3">
+          <form class="form">
             <input class="form-control" type="search" placeholder="Buscar..." />
           </form>
         </div>
@@ -139,11 +160,34 @@
           </button>
         </div>
 
-        <div id="input-secretos" class="card text-white bg-info mb-3">
+        <div id="input-secretos" class="card text-white mb-3">
           <h5 class="card-header">Publicar un secreto:</h5>
           <div class="card-body p-0">
-            <p class="card-title m-3">Me llamo x y tengo x anios</p>
-            <form class="form m-1">
+            <form class="m-1">
+              <div class="form-row">
+                <div class="col mb-1 pr-0">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nombre"
+                  />
+                </div>
+                <div class="col mb-1 pr-0">
+                  <select class="form-control">
+                    <option selected>Género</option>
+                    <option>N/A</option>
+                    <option>Masculino</option>
+                    <option>Femenino</option>
+                  </select>
+                </div>
+                <div class="col mb-1">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Edad: 18-100"
+                  />
+                </div>
+              </div>
               <textarea
                 class="form-control"
                 placeholder="Escribí tu secreto..."
