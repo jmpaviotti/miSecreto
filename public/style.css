@@ -15,10 +15,12 @@
 } */
 
 #post-button {
+  float: left;
   font-size: 1.5em;
 }
 
 #user-panel-button {
+  float: right;
   font-size: 1.5em;
 }
 
@@ -32,8 +34,9 @@
 }
 
 .male {
-  background-color: rgb(162, 181, 247);
-  color: rgb(74, 107, 226);
+  /* background-color: rgb(162, 181, 247); */
+  background-color: #73cfe6;
+  color: #267f96;
 }
 
 .female {
@@ -62,22 +65,44 @@
   font-size: 1.5em;
 }
 
+/* Mobile utilities */
+#search-bar-mobile {
+  width: 30%;
+}
+
+#search-bar-mobile input {
+  width: 100%;
+}
+
+#filter-mobile .btn {
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
 /* Desktop sidebar */
 
 #search-bar {
   background-color: #6d8ea0;
-  border: 2px solid #6d8ea0;
+  border: 1px solid #6d8ea0;
   border-radius: 5px;
 }
 
-#filter .btn {
+.filter .btn {
   color: #182825;
   border-color: #6d8ea0;
+  overflow: hidden;
 }
 
-#filter .btn:hover {
-  background-color: #22aed1;
+.filter .btn:hover {
+  background-color: #016fb9;
   color: #fff;
+}
+
+.filter .btn:active {
+  background-color: #016fb9 !important;
+  color: #fff;
+  border-color: #016fb9 !important;
 }
 
 #input-secretos {
@@ -85,8 +110,28 @@
 }
 
 /* Queries */
-@media (min-width: 992px) {
-  #user-panel-button i {
+@media (min-width: 320px) {
+  #search-bar-mobile {
+    width: 50%;
+  }
+}
+
+@media (min-width: 576px) {
+  #search-bar-mobile {
+    width: 39%;
+  }
+
+  #navbar-buttons {
     font-size: 2em;
+  }
+}
+
+@media (min-width: 768px) {
+  #search-bar-mobile {
+    width: 50%;
+  }
+
+  #feed {
+    padding: 0 1em !important;
   }
 }

@@ -42,50 +42,43 @@
           mi<strong>Secreto</strong>
         </h3>
       </a>
-      <div class="mr-2 d-block d-md-none" id="search-bar-mobile">
+      <div class="mr-3 d-block d-lg-none" id="search-bar-mobile">
         <form class="form-inline">
-          <input class="form-control" type="search" placeholder="Buscar..." />
+          <input
+            class="form-control form-control-lg"
+            type="search"
+            placeholder="Buscar..."
+          />
         </form>
       </div>
-      <div class="d-block d-md-none" id="post-button">
-        <i class="fas fa-pencil-alt"></i>
-      </div>
-      <div id="user-panel-button">
-        <i class="fas fa-user-circle"></i>
+      <div id="navbar-buttons">
+        <i
+          class="d-block d-lg-none fas fa-pencil-alt mr-3"
+          id="post-button"
+        ></i>
+        <i class="fas fa-user-circle" id="user-panel-button"></i>
       </div>
     </nav>
 
     <aside
       id="filter-mobile"
-      class="btn-group container d-block d-md-none"
+      class="btn-group btn-group-lg container-fluid d-lg-none filter"
       role="filter"
       aria-label="filter"
     >
-      <button
-        type="button"
-        class="btn btn-outline-primary"
-        style="border-top: 0;"
-      >
+      <button type="button" class="btn btn-outline-primary">
         Nuevos
       </button>
-      <button
-        type="button"
-        class="btn btn-outline-primary"
-        style="border-top: 0;"
-      >
+      <button type="button" class="btn btn-outline-primary">
         Mejores
       </button>
-      <button
-        type="button"
-        class="btn btn-outline-primary"
-        style="border-top: 0;"
-      >
+      <button type="button" class="btn btn-outline-primary">
         Polémicos
       </button>
     </aside>
 
     <div class="container-fluid d-flex p-3">
-      <main id="feed" class="col-8">
+      <main id="feed" class="col-lg-8 col-sm-12 p-0">
         <div class="secreto mb-3">
           <div class="card-header">
             <i class="far fa-user mr-2"></i>
@@ -138,7 +131,7 @@
         </div>
       </main>
 
-      <aside id="sidebar" class="col-4 align-self-start">
+      <aside id="sidebar" class="d-none d-lg-block col-4 align-self-start">
         <div id="search-bar" class="mb-3">
           <form class="form">
             <input class="form-control" type="search" placeholder="Buscar..." />
@@ -146,8 +139,8 @@
         </div>
 
         <div
-          id="filter"
-          class="container btn-group-lg btn-group-vertical mb-3 p-0"
+          id="filter-desktop"
+          class="container btn-group-lg btn-group-vertical mb-3 p-0 filter"
         >
           <button type="button" class="btn btn-outline-primary">
             Nuevos
