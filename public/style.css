@@ -109,6 +109,30 @@
   background-color: #6d8ea0;
 }
 
+/* Submit Button */
+.btn-success {
+  background-color: rgb(0, 0, 0, 10%);
+  border-color: rgb(0, 0, 0, 10%);
+}
+
+.btn-success:hover {
+  background-color: rgb(0, 0, 0, 20%);
+  border-color: rgb(0, 0, 0, 20%) !important;
+  box-shadow: none !important;
+}
+
+.btn-success:active {
+  background-color: rgb(0, 0, 0, 20%) !important;
+  border-color: rgb(0, 0, 0, 20%) !important;
+  box-shadow: none !important;
+}
+
+.btn-success:focus {
+  background-color: rgb(0, 0, 0, 20%) !important;
+  border-color: rgb(0, 0, 0, 20%) !important;
+  box-shadow: none !important;
+}
+
 /* Queries */
 @media (min-width: 320px) {
   #search-bar-mobile {
