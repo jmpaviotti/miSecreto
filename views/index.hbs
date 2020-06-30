@@ -4,7 +4,17 @@
 
 <div class="container-fluid d-flex p-3">
     <main id="feed" class="col-lg-8 col-sm-12 p-0">
-        {{!-- Posts go here --}}
+        {{#each rows}}
+            {{#equals gender "H"}}
+                {{> posts/secreto-m}}
+            {{else equals gender "M"}}
+                    {{> posts/secreto-f}}
+            {{else}}
+                    {{> posts/secreto}}
+            {{/equals}}
+        {{else}}
+            <p>Llegaste al fin de los secretos :O</p>
+        {{/each}}
     </main>
 
     {{> nav-lg}}
