@@ -25,7 +25,7 @@
       Publicar un secreto:
     </h5>
     <div class="card-body p-0">
-      <form class="m-1" action="add" method="POST">
+      <form class="m-1" action="secretos/add" method="POST">
         <div class="form-row">
           <div class="col mb-1 pr-0">
             <input
@@ -33,30 +33,36 @@
               name="author"
               class="form-control"
               placeholder="Nombre"
+              minlength="2"
+              maxlength="20"
+              required
             />
           </div>
           <div class="col mb-1 pr-0">
-            <select class="form-control" name="gender">
-              <option selected>
+            <select class="form-control" name="gender" required>
+              <option value="" selected disabled>
                 Género
               </option>
-              <option>
+              <option value="N">
                 N/A
               </option>
-              <option>
+              <option value="M">
                 Masculino
               </option>
-              <option>
+              <option value="F">
                 Femenino
               </option>
             </select>
           </div>
           <div class="col mb-1">
             <input
-              type="text"
+              type="number"
               name="age"
               class="form-control"
+              min="18"
+              max="100"
               placeholder="Edad: 18-100"
+              required
             />
           </div>
         </div>
@@ -66,6 +72,9 @@
           placeholder="Escribí tu secreto..."
           rows="5"
           style="resize: none;"
+          minlength="20"
+          maxlength="500"
+          required
         ></textarea>
 
         <button type="submit" class="btn btn-success w-100">
