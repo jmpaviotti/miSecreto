@@ -1,32 +1,26 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
+const h = require('./help');
 
 // Main feed + Pagination
 router.get('/', (req, res) => {
-  const { page = 1 } = req.query;
-  const pageData = {
-    previous: Number(page) - 1,
-    current: Number(page),
-    next: Number(page) + 1,
-    total: 1,
-  };
+  h.getPageData(req.query).then((pageData) => {
+    const offset = (pageData.current - 1) * 10;
+    const queryText = `SELECT * FROM secretos WHERE content LIKE '%${
+      req.query.term || ''
+    }%' ORDER BY id DESC LIMIT 10 OFFSET ${offset}`;
 
-  db.query('SELECT COUNT(*) FROM secretos')
-    .then((data) => (pageData.total = Math.ceil(data.rows[0].count / 10)))
-    .catch((e) => console.error(e.stack));
-
-  if (page >= 1) {
-    db.query(
-      `SELECT * FROM secretos ORDER BY id DESC LIMIT 10 OFFSET ${
-        (page - 1) * 10
-      }`
-    )
-      .then((data) => res.render('index', { rows: data.rows, pages: pageData }))
-      .catch((e) => console.error(e.stack));
-  } else {
-    res.sendStatus(404);
-  }
+    if (pageData.current >= 1) {
+      db.query(queryText)
+        .then((data) =>
+          res.render('index', { rows: data.rows, pages: pageData })
+        )
+        .catch((e) => console.error(e.stack));
+    } else {
+      res.redirect('/');
+    }
+  });
 });
 
 // Add secreto
@@ -66,6 +60,30 @@ router.post('/add', (req, res) => {
     console.log('Caught invalid "Insert" query.');
   }
   res.redirect('back');
+});
+
+// Search
+router.get('/search', (req, res) => {
+  const { term, page = 1 } = req.query;
+  const pageData = {
+    previous: Number(page) - 1,
+    current: Number(page),
+    next: Number(page) + 1,
+    total: 1,
+    context: req.originalUrl,
+  };
+  const text = `SELECT * FROM secretos WHERE content LIKE '%${term}%'`;
+  const pageText = `SELECT COUNT(*) FROM secretos WHERE content LIKE '%${term}%'`;
+
+  db.query(pageText)
+    .then((data) => (pageData.total = Math.ceil(data.rows[0].count / 10)))
+    .catch((e) => console.error(e.stack));
+
+  db.query(text)
+    .then((data) => {
+      res.render('index', { rows: data.rows, pages: pageData });
+    })
+    .catch((e) => console.error(e.stack));
 });
 
 module.exports = router;

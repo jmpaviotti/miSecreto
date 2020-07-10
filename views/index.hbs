@@ -18,20 +18,18 @@
 
         <nav id="pages" class="d-flex justify-content-center">
             <ul class="pagination m-0">
-                {{!log  pages}}
                 {{#with pages}}
-
-                    {{#not_equals current 1}}
-                        <li class="page-item"><a class="page-link" href="/secretos?page=1"><i class="fas fa-angle-double-left"></i></a></li>
-                        <li class="page-item"><a class="page-link" href="/secretos?page={{{previous}}}"><i class="fas fa-angle-left"></i></a></li>
-                        <li class="page-item"><a class="page-link" href="/secretos?page={{{previous}}}"><strong>{{{previous}}}</strong></a></li>
-                    {{/not_equals}}
-                        <li class="page-item active"><a class="page-link" href="/secretos?page={{{current}}}"><strong>{{{current}}}</strong></a></li>
-                    {{#not_equals current total}}
-                        <li class="page-item"><a class="page-link" href="/secretos?page={{{next}}}"><strong>{{{next}}}</strong></a></li>
-                        <li class="page-item"><a class="page-link" href="/secretos?page={{{next}}}"><i class="fas fa-angle-right"></i></a></li>
-                        <li class="page-item"><a class="page-link" href="/secretos?page={{{total}}}"><i class="fas fa-angle-double-right"></i></a></li>
-                    {{/not_equals}}
+                    {{#if display}}
+                        {{#not_equals current 1}}
+                            <li class="page-item"><a class="page-link" href="/secretos?{{base}}&page=1"><i class="fas fa-angle-double-left"></i></a></li>
+                            <li class="page-item"><a class="page-link" href="/secretos?{{base}}&page={{previous}}"><strong>{{{previous}}}</strong></a></li>
+                        {{/not_equals}}
+                            <li class="page-item active"><a class="page-link" href="/secretos?{{base}}&page={{current}}"><strong>{{{current}}}</strong></a></li>
+                        {{#not_equals current total}}
+                            <li class="page-item"><a class="page-link" href="/secretos?{{base}}&page={{next}}"><strong>{{{next}}}</strong></a></li>
+                            <li class="page-item"><a class="page-link" href="/secretos?{{base}}&page={{total}}"><i class="fas fa-angle-double-right"></i></a></li>
+                        {{/not_equals}}
+                    {{/if}}
                 {{/with}}
             </ul>
         </nav>

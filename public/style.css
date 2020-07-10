@@ -61,8 +61,37 @@
   justify-content: space-between;
 }
 
-.secreto .card-footer i {
+/* Votes */
+.score {
+  font-weight: bold;
+  align-self: flex-end;
+  text-align: center;
+  margin: 0;
+  bottom: 0;
+}
+
+.voting {
   font-size: 1.5em;
+}
+
+.voting button {
+  color: inherit;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.voting button i:hover {
+  transition: transform 0.2s ease-out 0.1s;
+  transform: scale(1.45);
+}
+
+.upvote:active {
+  color: rgb(29, 112, 29);
+}
+
+.downvote:active {
+  color: rgb(153, 13, 13);
 }
 
 /* Mobile utilities */
