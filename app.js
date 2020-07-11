@@ -1,11 +1,21 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 const handlebars = require('express-handlebars');
 const helpers = require('./lib/helpers');
 const favicon = require('serve-favicon');
 
 // Init express
 const app = express();
+
+// Session
+app.use(
+  session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 // Favicon
 app.use(favicon('./public/favicon.ico'));
@@ -31,6 +41,7 @@ app.engine(
 );
 
 // Body Parser
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Static folder for css

@@ -82,16 +82,18 @@
 }
 
 .voting button i:hover {
-  transition: transform 0.2s ease-out 0.1s;
+  transition: transform 0.2s ease-out;
   transform: scale(1.45);
 }
 
-.upvote:active {
-  color: rgb(29, 112, 29);
+.upvote:active,
+.upvote.toggled {
+  color: rgb(29, 112, 29) !important;
 }
 
-.downvote:active {
-  color: rgb(153, 13, 13);
+.downvote:active,
+.downvote.toggled {
+  color: rgb(153, 13, 13) !important;
 }
 
 /* Mobile utilities */

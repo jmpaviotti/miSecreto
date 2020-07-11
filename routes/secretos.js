@@ -5,6 +5,10 @@ const h = require('./help');
 
 // Main feed + Pagination
 router.get('/', (req, res) => {
+  if (!req.session.votes) {
+    req.session.votes = {};
+  }
+
   h.getPageData(req.query).then((pageData) => {
     const offset = (pageData.current - 1) * 10;
     const queryText = `SELECT * FROM secretos WHERE content LIKE '%${
@@ -14,7 +18,11 @@ router.get('/', (req, res) => {
     if (pageData.current >= 1) {
       db.query(queryText)
         .then((data) =>
-          res.render('index', { rows: data.rows, pages: pageData })
+          res.render('index', {
+            rows: data.rows,
+            pages: pageData,
+            votes: req.session.votes,
+          })
         )
         .catch((e) => console.error(e.stack));
     } else {
@@ -75,15 +83,63 @@ router.get('/search', (req, res) => {
   const text = `SELECT * FROM secretos WHERE content LIKE '%${term}%'`;
   const pageText = `SELECT COUNT(*) FROM secretos WHERE content LIKE '%${term}%'`;
 
+  // Count
   db.query(pageText)
     .then((data) => (pageData.total = Math.ceil(data.rows[0].count / 10)))
     .catch((e) => console.error(e.stack));
 
+  // Get Data
   db.query(text)
     .then((data) => {
       res.render('index', { rows: data.rows, pages: pageData });
     })
     .catch((e) => console.error(e.stack));
+});
+
+// Get session votes
+router.get('/vote', (req, res) => {
+  res.send(req.session.votes);
+});
+
+// Voting
+router.post('/vote', (req, res) => {
+  const { id, vote } = req.body;
+  const userVotes = req.session.votes;
+
+  if (!userVotes[id]) {
+    db.query(`UPDATE secretos SET votes = votes + ${vote} WHERE id = ${id}`)
+      .then(() => {
+        userVotes[id] = vote; // Track vote
+        db.query(`SELECT votes FROM secretos WHERE id = ${id}`)
+          .then((data) => {
+            res.send(data.rows[0]);
+          })
+          .catch((e) => console.error(e.stack));
+      })
+      .catch((e) => console.error(e.stack));
+  } else if (userVotes[id] == vote) {
+    db.query(`UPDATE secretos SET votes = votes - ${vote} WHERE id = ${id}`) // Undo vote from DB
+      .then(() => {
+        delete userVotes[id]; // Undo vote from session
+        db.query(`SELECT votes FROM secretos WHERE id = ${id}`)
+          .then((data) => {
+            res.send(data.rows[0]);
+          })
+          .catch((e) => console.error(e.stack));
+      })
+      .catch((e) => console.error(e.stack));
+  } else {
+    db.query(`UPDATE secretos SET votes = votes + ${vote * 2} WHERE id = ${id}`) // Undo vote from DB + Count other vote
+      .then(() => {
+        userVotes[id] = vote; // Update session vote
+        db.query(`SELECT votes FROM secretos WHERE id = ${id}`)
+          .then((data) => {
+            res.send(data.rows[0]);
+          })
+          .catch((e) => console.error(e.stack));
+      })
+      .catch((e) => console.error(e.stack));
+  }
 });
 
 module.exports = router;
