@@ -131,7 +131,7 @@ router.post('/vote', (req, res) => {
   } else {
     db.query(`UPDATE secretos SET votes = votes + ${vote * 2} WHERE id = ${id}`) // Undo vote from DB + Count other vote
       .then(() => {
-        userVotes[id] = vote; // Update session vote
+        userVotes[id] = vote; // Updat session vote
         db.query(`SELECT votes FROM secretos WHERE id = ${id}`)
           .then((data) => {
             res.send(data.rows[0]);

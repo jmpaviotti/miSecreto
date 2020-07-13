@@ -11,7 +11,7 @@ const app = express();
 // Session
 app.use(
   session({
-    secret: 'keyboard cat',
+    secret: 'sopa de macaco, uma delicia mano',
     resave: false,
     saveUninitialized: false,
   })
