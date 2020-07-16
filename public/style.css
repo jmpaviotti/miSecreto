@@ -31,6 +31,7 @@
   color: #414141;
   font-family: 'Raleway', sans-serif;
   border-radius: 5px;
+  overflow-wrap: break-word;
 }
 
 .male {
@@ -61,8 +62,15 @@
   justify-content: space-between;
 }
 
+.timestamp {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 /* Votes */
 .score {
+  color: #000;
   font-weight: bold;
   align-self: flex-end;
   text-align: center;
@@ -79,11 +87,12 @@
   border: none;
   outline: none;
   background: none;
+  align-self: flex-end;
 }
 
 .voting button i:hover {
-  transition: transform 0.2s ease-out;
-  transform: scale(1.45);
+  transition: transform 10s cubic-bezier(.03,.8,0,1);
+  transform: scale(1.5);
 }
 
 .upvote:active,
@@ -97,6 +106,38 @@
 }
 
 /* Mobile utilities */
+#navbar-buttons a {
+  color: #000;
+}
+
+.mobile-center {
+  height: 80vh;
+}
+
+.mobile-center div{
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+}
+
+#mobile-add {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  justify-content: space-between;
+}
+
+#mobile-add .form-row {
+  flex: 5 0 auto;
+}
+
+#mobile-add #content-input {
+  flex: 40 0 auto;
+}
+
+#mobile-add #submit{
+  flex: 5 0 auto;
+}
+
 #search-bar-mobile {
   width: 30%;
 }

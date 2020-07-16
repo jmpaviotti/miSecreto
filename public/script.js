@@ -27,8 +27,8 @@ function vote(id, value) {
     .then((response) => response.json())
     .then((data) => {
       const secreto = document.querySelector(`#s${id}`);
-      const up = document.querySelector('.upvote');
-      const down = document.querySelector('.downvote');
+      const up = secreto.querySelector('.upvote');
+      const down = secreto.querySelector('.downvote');
       //
       secreto.querySelector('.score').innerHTML = data.votes;
       //

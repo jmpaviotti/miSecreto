@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 const h = require('./help');
+const { query } = require('express');
 
 // Main feed + Pagination
 router.get('/', (req, res) => {
@@ -10,20 +11,18 @@ router.get('/', (req, res) => {
   }
 
   h.getPageData(req.query).then((pageData) => {
-    const offset = (pageData.current - 1) * 10;
-    const queryText = `SELECT * FROM secretos WHERE content LIKE '%${
-      req.query.term || ''
-    }%' ORDER BY id DESC LIMIT 10 OFFSET ${offset}`;
+    const query = h.sanitizeQuery(req.query, pageData.current)
 
     if (pageData.current >= 1) {
-      db.query(queryText)
-        .then((data) =>
+      db.query(query)
+        .then((data) => {
+          // console.log(data)
           res.render('index', {
             rows: data.rows,
             pages: pageData,
             votes: req.session.votes,
           })
-        )
+        })
         .catch((e) => console.error(e.stack));
     } else {
       res.redirect('/');
@@ -67,33 +66,7 @@ router.post('/add', (req, res) => {
   } else {
     console.log('Caught invalid "Insert" query.');
   }
-  res.redirect('back');
-});
-
-// Search
-router.get('/search', (req, res) => {
-  const { term, page = 1 } = req.query;
-  const pageData = {
-    previous: Number(page) - 1,
-    current: Number(page),
-    next: Number(page) + 1,
-    total: 1,
-    context: req.originalUrl,
-  };
-  const text = `SELECT * FROM secretos WHERE content LIKE '%${term}%'`;
-  const pageText = `SELECT COUNT(*) FROM secretos WHERE content LIKE '%${term}%'`;
-
-  // Count
-  db.query(pageText)
-    .then((data) => (pageData.total = Math.ceil(data.rows[0].count / 10)))
-    .catch((e) => console.error(e.stack));
-
-  // Get Data
-  db.query(text)
-    .then((data) => {
-      res.render('index', { rows: data.rows, pages: pageData });
-    })
-    .catch((e) => console.error(e.stack));
+  res.redirect('/');
 });
 
 // Get session votes
@@ -131,7 +104,7 @@ router.post('/vote', (req, res) => {
   } else {
     db.query(`UPDATE secretos SET votes = votes + ${vote * 2} WHERE id = ${id}`) // Undo vote from DB + Count other vote
       .then(() => {
-        userVotes[id] = vote; // Updat session vote
+        userVotes[id] = vote; // Update session vote
         db.query(`SELECT votes FROM secretos WHERE id = ${id}`)
           .then((data) => {
             res.send(data.rows[0]);

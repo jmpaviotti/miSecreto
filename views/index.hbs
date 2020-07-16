@@ -5,13 +5,7 @@
 <div class="container-fluid d-flex p-3">
     <main id="feed" class="col-lg-8 col-sm-12 p-0">
         {{#each rows}}
-            {{#equals gender "M"}}
-                {{> posts/secreto-m}}
-            {{else equals gender "F"}}
-                    {{> posts/secreto-f}}
-            {{else}}
-                    {{> posts/secreto}}
-            {{/equals}}
+            {{> secreto}}
         {{else}}
             <h1 class="text-center mb-3">Nada por acá...</h1>
         {{/each}}
@@ -21,13 +15,13 @@
                 {{#with pages}}
                     {{#if display}}
                         {{#not_equals current 1}}
-                            <li class="page-item"><a class="page-link" href="/secretos?{{base}}&page=1"><i class="fas fa-angle-double-left"></i></a></li>
-                            <li class="page-item"><a class="page-link" href="/secretos?{{base}}&page={{previous}}"><strong>{{{previous}}}</strong></a></li>
+                            <li class="page-item"><a class="page-link" href="/secretos?{{base}}1"><i class="fas fa-angle-double-left"></i></a></li>
+                            <li class="page-item"><a class="page-link" href="/secretos?{{base}}{{previous}}"><strong>{{{previous}}}</strong></a></li>
                         {{/not_equals}}
-                            <li class="page-item active"><a class="page-link" href="/secretos?{{base}}&page={{current}}"><strong>{{{current}}}</strong></a></li>
+                            <li class="page-item active"><a class="page-link" href="/secretos?{{base}}{{current}}"><strong>{{{current}}}</strong></a></li>
                         {{#not_equals current total}}
-                            <li class="page-item"><a class="page-link" href="/secretos?{{base}}&page={{next}}"><strong>{{{next}}}</strong></a></li>
-                            <li class="page-item"><a class="page-link" href="/secretos?{{base}}&page={{total}}"><i class="fas fa-angle-double-right"></i></a></li>
+                            <li class="page-item"><a class="page-link" href="/secretos?{{base}}{{next}}"><strong>{{{next}}}</strong></a></li>
+                            <li class="page-item"><a class="page-link" href="/secretos?{{base}}{{total}}"><i class="fas fa-angle-double-right"></i></a></li>
                         {{/not_equals}}
                     {{/if}}
                 {{/with}}

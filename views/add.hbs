@@ -1,0 +1,72 @@
+<div class="container mobile-center">
+  <div id="input-secretos" class="card text-white h-100">
+
+    <h5 class="card-header">
+      Publicar un secreto:
+    </h5>
+    
+    <form id="mobile-add" class="card-body col-12 p-3" action="secretos/add" method="POST">
+
+      <div class="form-row m-0 p-1">
+        <input
+          type="text"
+          name="author"
+          class="form-control h-100"
+          placeholder="Nombre"
+          minlength="2"
+          maxlength="20"
+          required
+        />
+      </div>
+
+      <div class="form-row m-0 p-1">
+        <input
+          type="number"
+          name="age"
+          class="form-control h-100"
+          min="18"
+          max="100"
+          placeholder="Edad: 18-100"
+          required
+        />
+      </div>
+
+      <div class="form-row m-0 p-1">
+        <select class="form-control h-100 align-items-left" name="gender" required>
+          <option value="" selected disabled>
+            Género
+          </option>
+          <option value="N">
+            N/A
+          </option>
+          <option value="M">
+            Masculino
+          </option>
+          <option value="F">
+            Femenino
+          </option>
+        </select>
+      </div>
+      
+      <div id="content-input" class="form-row m-0 p-1">
+        <textarea
+          name="content"
+          class="form-control"
+          placeholder="Escribí tu secreto..."
+          style="resize: none;"
+          minlength="20"
+          maxlength="500"
+          required
+        ></textarea>
+      </div>
+
+      <button id="submit" type="submit" class="btn btn-success m-1">
+        <strong>
+          Enviar
+        </strong>
+      </button>
+
+    </form>
+
+  </div>
+</div>
