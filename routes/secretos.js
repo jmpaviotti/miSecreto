@@ -10,21 +10,26 @@ router.get("/", (req, res) => {
     req.session.votes = {};
   }
 
-  util.getPageData(req.query).then((pageData) => {
-    if (pageData.current >= 1) {
-      db.query(queries.selectQuery(req.query, pageData.current, pageData.terms))
-        .then((data) => {
-          res.render("index", {
-            rows: data.rows,
-            pages: pageData,
-            votes: req.session.votes,
-          });
-        })
-        .catch((e) => console.error(e.stack));
-    } else {
-      res.redirect("/");
-    }
-  });
+  util
+    .getPageData(req.query)
+    .then((pageData) => {
+      if (pageData.current >= 1) {
+        db.query(
+          queries.selectQuery(req.query, pageData.current, pageData.expressions)
+        )
+          .then((data) => {
+            res.render("index", {
+              rows: data.rows,
+              pages: pageData,
+              votes: req.session.votes,
+            });
+          })
+          .catch((e) => console.error(e.stack));
+      } else {
+        res.redirect("/");
+      }
+    })
+    .catch((e) => console.error(e.stack));
 });
 
 // Add secreto
