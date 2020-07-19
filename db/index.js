@@ -1,13 +1,18 @@
-const { Pool } = require('pg');
+const { Pool } = require("pg");
 
-// Enviroment variables config
-const dotenv = require('dotenv');
-dotenv.config();
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
 
-const pool = new Pool();
+// Enviroment variables confighero
+// const dotenv = require("dotenv");
+// dotenv.config();
 
 module.exports = {
   query: (text, params, callback) => {
-   return pool.query(text, params, callback)
-  }
-}
+    return pool.query(text, params, callback);
+  },
+};
